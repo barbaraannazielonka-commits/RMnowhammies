@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>No Whammies: Workplace Safety &amp; Hygiene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --charcoal: #1c2024;
+    --charcoal-2: #242a30;
+    --cream: #f2ede0;
+    --mustard: #f2b134;
+    --mustard-dim: #c98e1f;
+    --tomato: #c1402c;
+    --sage: #52a37e;
+    --sage-dim: #3c7d5d;
+    --line: rgba(242,237,224,0.14);
+    --shadow: rgba(0,0,0,0.45);
+    --radius: 10px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --charcoal: #1c2024; --charcoal-2: #242a30; --cream: #f2ede0;
+      --mustard: #f2b134; --mustard-dim: #c98e1f; --tomato: #c1402c;
+      --sage: #52a37e; --sage-dim: #3c7d5d; --line: rgba(242,237,224,0.14); --shadow: rgba(0,0,0,0.45);
+    }
+  }
+  :root[data-theme="dark"]{
+    --charcoal: #1c2024; --charcoal-2: #242a30; --cream: #f2ede0;
+    --mustard: #f2b134; --mustard-dim: #c98e1f; --tomato: #c1402c;
+    --sage: #52a37e; --sage-dim: #3c7d5d; --line: rgba(242,237,224,0.14); --shadow: rgba(0,0,0,0.45);
+  }
+  html{ scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    min-height:100%;
+    background:
+      repeating-linear-gradient(135deg, rgba(242,177,52,0.05) 0 14px, transparent 14px 28px),
+      radial-gradient(ellipse at 100% 110%, rgba(193,64,44,0.12), transparent 45%),
+      var(--charcoal);
+    color: var(--cream);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 22px 16px 48px;
+  }
+
+  /* ---------- Site nav ---------- */
+  .site-nav{
+    display:flex;
+    gap:10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .site-nav a{
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    color: rgba(242,237,224,0.7);
+    border: 1px solid var(--line);
+    padding: 7px 13px;
+    border-radius: 999px;
+  }
+  .site-nav a.current{
+    color: var(--charcoal);
+    background: var(--mustard);
+    border-color: var(--mustard);
+  }
+
+  /* ---------- Header ---------- */
+  .marquee{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    padding: 14px 20px;
+    border: 2px solid var(--mustard);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(242,177,52,0.10), rgba(242,177,52,0.02));
+    box-shadow: 0 10px 24px var(--shadow);
+    margin-bottom: 22px;
+  }
+  .marquee-title{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    letter-spacing: 0.5px;
+    line-height: 0.95;
+    font-size: clamp(22px, 3.8vw, 38px);
+  }
+  .marquee-title span{ color: var(--mustard); }
+  .marquee-sub{
+    font-size: 13px;
+    color: rgba(242,237,224,0.72);
+    margin-top: 4px;
+    max-width: 46ch;
+    line-height:1.4;
+  }
+  .marquee-stats{
+    display:flex;
+    gap: 10px;
+  }
+  .stat{
+    text-align:center;
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.2);
+    min-width: 96px;
+  }
+  .stat b{
+    display:block;
+    font-family:'Anton', sans-serif;
+    font-size: 20px;
+    color: var(--mustard);
+  }
+  .stat small{
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: rgba(242,237,224,0.6);
+  }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns: 240px 1fr;
+    gap: 20px;
+    align-items:start;
+  }
+  @media (max-width: 860px){
+    .layout{ grid-template-columns: 1fr; }
+  }
+
+  .panel{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--charcoal-2);
+    padding: 16px 16px 18px;
+  }
+  .panel h2{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size: 17px;
+    letter-spacing: 0.3px;
+    color: var(--mustard);
+    margin: 0 0 10px;
+  }
+  .panel ol, .panel ul{
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(242,237,224,0.85);
+  }
+  .panel li{ margin-bottom: 7px; }
+  .panel + .panel{ margin-top: 16px; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top: 10px; }
+  .tag{
+    font-size: 11px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: rgba(242,237,224,0.75);
+  }
+
+  /* ---------- Board ---------- */
+  .board{
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 8px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.1));
+    border: 2px solid var(--mustard);
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 14px 30px var(--shadow);
+  }
+  .cell{
+    position:relative;
+    border-radius: 8px;
+    padding: 8px 6px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    min-height: 78px;
+    border: 1px solid rgba(0,0,0,0.35);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .cell .kind{
+    font-size: 9.5px;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+    margin-bottom: 3px;
+  }
+  .cell .value{
+    font-family:'Anton', sans-serif;
+    font-size: 17px;
+    line-height: 1.05;
+  }
+  .cell .job{
+    font-size: 9.5px;
+    margin-top: 3px;
+    opacity: 0.9;
+  }
+  .cell.points{ background: var(--sage-dim); color: var(--cream); }
+  .cell.whammy{ background: var(--tomato); color: var(--cream); }
+  .cell.extra{ background: #3b5f8a; color: var(--cream); }
+  .cell.lit{
+    transform: scale(1.07);
+    box-shadow: 0 0 0 3px var(--mustard), 0 0 22px rgba(242,177,52,0.75);
+    z-index: 2;
+  }
+  .cell.center{
+    grid-column: 2 / span 4;
+    grid-row: 2 / span 2;
+    background: transparent;
+    border: none;
+    min-height: 0;
+    padding: 0;
+  }
+
+  /* ---------- Center control panel ---------- */
+  .core{
+    height: 100%;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(242,177,52,0.12), transparent 60%), rgba(0,0,0,0.35);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: 10px;
+    gap: 6px;
+  }
+  .core .label{
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: rgba(242,237,224,0.6);
+  }
+  .core .bank{
+    font-family:'Anton', sans-serif;
+    font-size: clamp(28px, 5vw, 46px);
+    color: var(--mustard);
+    line-height: 1;
+  }
+  .core .msg{
+    min-height: 18px;
+    font-size: 12.5px;
+    color: rgba(242,237,224,0.85);
+    text-align:center;
+    max-width: 34ch;
+  }
+  .core .spins{
+    font-size: 12.5px;
+    margin-top: 2px;
+  }
+  .core .spins b{ color: var(--sage); }
+  .core .btn-row{ display:flex; gap: 10px; margin-top: 6px; }
+  button{
+    font-family:'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.08s ease, filter 0.15s ease;
+  }
+  button:active{ transform: translateY(1px); }
+  button:disabled{ opacity: 0.4; cursor: not-allowed; }
+  .btn-spin{ background: var(--mustard); color: #241a04; }
+  .btn-spin:hover:not(:disabled){ filter: brightness(1.08); }
+  .btn-stop{ background: var(--tomato); color: #2a0805; }
+  .btn-stop:hover:not(:disabled){ filter: brightness(1.08); }
+  .btn-ghost{
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--cream);
+  }
+
+  /* ---------- Modal ---------- */
+  .overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(8,7,5,0.72);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 50;
+  }
+  .overlay.show{ display:flex; }
+  .modal{
+    background: var(--charcoal-2);
+    border: 2px solid var(--mustard);
+    border-radius: 12px;
+    max-width: 460px;
+    width: 100%;
+    padding: 22px 22px 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  }
+  .modal .eyebrow{
+    font-size: 11px;
+    color: var(--mustard);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .modal h3{
+    font-family:'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.3;
+    margin: 0 0 16px;
+  }
+  .opt{
+    display:block;
+    width: 100%;
+    text-align:left;
+    background: rgba(242,237,224,0.06);
+    border: 1px solid var(--line);
+    color: var(--cream);
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 13.5px;
+    cursor:pointer;
+  }
+  .opt:hover:not(:disabled){ border-color: var(--mustard); }
+  .opt.correct{ background: rgba(82,163,126,0.30); border-color: var(--sage); }
+  .opt.wrong{ background: rgba(193,64,44,0.35); border-color: var(--tomato); }
+  .feedback{
+    font-size: 13px;
+    margin: 10px 0 2px;
+    min-height: 18px;
+  }
+  .modal .close-row{ text-align:right; margin-top: 12px; }
+
+  .end-title{
+    font-family:'Anton', sans-serif;
+    font-size: 30px;
+    color: var(--mustard);
+    margin: 0 0 4px;
+  }
+  .end-rank{
+    font-size: 15px;
+    color: var(--sage);
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="site-nav">
+    <a href="https://claude.ai/artifact/WDByV2TchH9hdvUMUSZnQc">Kitchen Careers</a>
+    <a href="https://claude.ai/artifact/8Kb1ZG8k7AHff2p2UEk8qj">Kitchen Utensils</a>
+    <a href="#" class="current">Safety &amp; Hygiene</a>
+  </nav>
+
+  <header class="marquee">
+    <div>
+      <div class="marquee-title">NO <span>WHAMMIES!</span> SAFETY &amp; HYGIENE</div>
+      <div class="marquee-sub">Press your luck and learn the English words for staying safe and clean in a professional kitchen.</div>
+    </div>
+    <div class="marquee-stats">
+      <div class="stat"><b id="highScore">0</b><small>HIGH SCORE</small></div>
+      <div class="stat"><b id="whammyCount">0</b><small>WHAMMIES HIT</small></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside>
+      <div class="panel">
+        <h2>How to play</h2>
+        <ol>
+          <li>Start with 5 spins. Click <b>SPIN</b> to send the light around the board.</li>
+          <li>Click <b>STOP</b> to land the light on a cell.</li>
+          <li>Land on a safety card and answer an English question about workplace safety or hygiene to bank the points.</li>
+          <li>Avoid <b>WHAMMY</b> — it wipes your whole score!</li>
+          <li>Land on <b>+1 SPIN</b> for a free extra turn.</li>
+          <li>Game ends when your spins run out.</li>
+        </ol>
+      </div>
+      <div class="panel">
+        <h2>Vocabulary in play</h2>
+        <p style="font-size:13px; color:rgba(242,237,224,0.75); margin:0 0 4px;">Terms you'll meet on the board:</p>
+        <div class="tag-row">
+          <span class="tag">PPE</span>
+          <span class="tag">hand washing</span>
+          <span class="tag">cross-contamination</span>
+          <span class="tag">danger zone</span>
+          <span class="tag">wet floor sign</span>
+          <span class="tag">fire safety</span>
+          <span class="tag">allergens</span>
+          <span class="tag">cleaning schedule</span>
+          <span class="tag">knife safety</span>
+          <span class="tag">HACCP</span>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="board" id="board"></div>
+      <div style="text-align:center; margin-top:16px;">
+        <button class="btn-ghost" id="resetBtn">Restart game</button>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Question modal -->
+<div class="overlay" id="qOverlay">
+  <div class="modal">
+    <div class="eyebrow" id="qEyebrow">SAFETY CARD · 500 PTS</div>
+    <h3 id="qText">Question goes here</h3>
+    <div id="qOptions"></div>
+    <div class="feedback" id="qFeedback"></div>
+    <div class="close-row">
+      <button class="btn-spin" id="qContinue" style="display:none;">Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- End game modal -->
+<div class="overlay" id="endOverlay">
+  <div class="modal" style="text-align:center;">
+    <div class="end-title">GAME OVER</div>
+    <div style="font-size:15px; margin-bottom:2px;">Final score: <b id="endScore" style="color:var(--mustard)">0</b></div>
+    <div class="end-rank" id="endRank">Safety Rookie</div>
+    <p style="font-size:13px; color:rgba(242,237,224,0.75); margin-bottom:16px;" id="endNote"></p>
+    <button class="btn-spin" id="playAgain">Play again</button>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  // ---------- Content: 16 ring cells ----------
+  var cells = [
+    { type:'points', value:300,  job:'PPE',
+      q:'What does PPE stand for in a professional kitchen?',
+      options:['Personal Protective Equipment','Public Property Exchange','Prepared Plate Event'], correct:0 },
+    { type:'whammy' },
+    { type:'points', value:500,  job:'Hand Washing',
+      q:'When should kitchen staff wash their hands?',
+      options:['Before handling food and after touching raw meat','Only at the start of the shift','Only after eating'], correct:0 },
+    { type:'points', value:700,  job:'Cross-Contamination',
+      q:'Cross-contamination means...',
+      options:['Harmful bacteria spreading from one food or surface to another','Cooking food at the correct temperature','Labelling food with the date'], correct:0 },
+    { type:'extra' },
+    { type:'points', value:900,  job:'Danger Zone',
+      q:"The food 'danger zone' is the temperature range where...",
+      options:['Bacteria grow fastest','Food tastes best','Ovens work most efficiently'], correct:0 },
+    { type:'whammy' },
+    { type:'points', value:1100, job:'Wet Floor Sign',
+      q:"A 'Wet Floor' warning sign is there to prevent...",
+      options:['Slips and falls','Fires','Allergic reactions'], correct:0 },
+    { type:'points', value:1300, job:'Fire Safety',
+      q:'If a pan of oil catches fire, you should never try to put it out with...',
+      options:['Water','A fire blanket','A suitable fire extinguisher'], correct:0 },
+    { type:'whammy' },
+    { type:'points', value:1500, job:'Allergens',
+      q:'By law, staff must be able to tell customers about... in a dish.',
+      options:['Allergens','Portion size','Cooking time'], correct:0 },
+    { type:'extra' },
+    { type:'points', value:1800, job:'Cleaning Schedule',
+      q:'A cleaning schedule helps a kitchen stay...',
+      options:['Hygienic and safe','Colourful','Quiet'], correct:0 },
+    { type:'whammy' },
+    { type:'points', value:2200, job:'Knife Safety',
+      q:'When carrying a knife across the kitchen, you should...',
+      options:['Hold it point down, close to your body','Wave it to clear a path','Run with it to save time'], correct:0 },
+    { type:'points', value:2500, job:'HACCP',
+      q:'HACCP is a system used in food businesses to...',
+      options:['Identify and control food safety hazards','Plan staff work schedules','Design the restaurant menu'], correct:0 }
+  ];
+
+  var whammyLines = [
+    'WHAMMY! You slipped on a wet floor!',
+    'WHAMMY! Raw chicken touched the salad — contamination!',
+    'WHAMMY! You forgot your hairnet during the inspection!',
+    'WHAMMY! The fire alarm went off and the shift stopped!'
+  ];
+
+  var ranks = [
+    { min:0,    max:999,  title:'Safety Rookie' },
+    { min:1000, max:2999, title:'Hygiene Trainee' },
+    { min:3000, max:5999, title:'Certified Kitchen Hand' },
+    { min:6000, max:8999, title:'Safety Supervisor' },
+    { min:9000, max:Infinity, title:'HACCP Champion' }
+  ];
+
+  cells.forEach(function(c){
+    if(c.type !== 'points') return;
+    var correctText = c.options[c.correct];
+    var arr = c.options.slice();
+    for(var i = arr.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i+1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    c.options = arr;
+    c.correct = arr.indexOf(correctText);
+  });
+
+  var positions = [
+    [1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+    [2,6],[3,6],
+    [4,6],[4,5],[4,4],[4,3],[4,2],[4,1],
+    [3,1],[2,1]
+  ];
+
+  var boardEl = document.getElementById('board');
+  var cellEls = [];
+
+  positions.forEach(function(pos, i){
+    var el = document.createElement('div');
+    var c = cells[i];
+    el.className = 'cell ' + c.type;
+    el.style.gridRow = pos[0];
+    el.style.gridColumn = pos[1];
+
+    if(c.type === 'points'){
+      el.innerHTML = '<div class="kind">SAFETY CARD</div><div class="value">' + c.value + '</div><div class="job">' + c.job + '</div>';
+    } else if(c.type === 'whammy'){
+      el.innerHTML = '<div class="kind">WATCH OUT</div><div class="value">WHAMMY</div><div class="job">lose all points</div>';
+    } else {
+      el.innerHTML = '<div class="kind">BONUS</div><div class="value">+1</div><div class="job">extra spin</div>';
+    }
+    boardEl.appendChild(el);
+    cellEls.push(el);
+  });
+
+  var centerCell = document.createElement('div');
+  centerCell.className = 'cell center';
+  centerCell.innerHTML =
+    '<div class="core">' +
+      '<div class="label">CURRENT SCORE</div>' +
+      '<div class="bank" id="bank">0</div>' +
+      '<div class="msg" id="msg">Ready when you are — hit spin!</div>' +
+      '<div class="spins">Spins left: <b id="spinsLeft">5</b></div>' +
+      '<div class="btn-row">' +
+        '<button class="btn-spin" id="spinBtn">SPIN</button>' +
+        '<button class="btn-stop" id="stopBtn" disabled>STOP</button>' +
+      '</div>' +
+    '</div>';
+  boardEl.appendChild(centerCell);
+
+  var state = {
+    bank: 0,
+    spinsLeft: 5,
+    activeIndex: 0,
+    spinning: false,
+    stopping: false,
+    whammies: 0,
+    timer: null,
+    over: false
+  };
+
+  var bankEl = document.getElementById('bank');
+  var spinsEl = document.getElementById('spinsLeft');
+  var msgEl = document.getElementById('msg');
+  var spinBtn = document.getElementById('spinBtn');
+  var stopBtn = document.getElementById('stopBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var whammyCountEl = document.getElementById('whammyCount');
+  var highScoreEl = document.getElementById('highScore');
+
+  var qOverlay = document.getElementById('qOverlay');
+  var qEyebrow = document.getElementById('qEyebrow');
+  var qText = document.getElementById('qText');
+  var qOptions = document.getElementById('qOptions');
+  var qFeedback = document.getElementById('qFeedback');
+  var qContinue = document.getElementById('qContinue');
+
+  var endOverlay = document.getElementById('endOverlay');
+  var endScore = document.getElementById('endScore');
+  var endRank = document.getElementById('endRank');
+  var endNote = document.getElementById('endNote');
+  var playAgain = document.getElementById('playAgain');
+
+  function loadHighScore(){
+    try{
+      var v = localStorage.getItem('nwsh-high-score');
+      return v ? parseInt(v, 10) : 0;
+    }catch(e){ return 0; }
+  }
+  function saveHighScore(v){
+    try{ localStorage.setItem('nwsh-high-score', String(v)); }catch(e){}
+  }
+  highScoreEl.textContent = loadHighScore();
+
+  function render(){
+    bankEl.textContent = state.bank;
+    spinsEl.textContent = state.spinsLeft;
+    cellEls.forEach(function(el, i){
+      el.classList.toggle('lit', i === state.activeIndex);
+    });
+  }
+  render();
+
+  function setMsg(text){ msgEl.textContent = text; }
+
+  function startSpin(){
+    if(state.spinning || state.over || state.spinsLeft <= 0) return;
+    state.spinning = true;
+    state.stopping = false;
+    spinBtn.disabled = true;
+    stopBtn.disabled = false;
+    setMsg('Spinning... click STOP!');
+    var delay = 85;
+    state.timer = setInterval(function(){
+      state.activeIndex = (state.activeIndex + 1) % cellEls.length;
+      render();
+    }, delay);
+  }
+
+  function stopSpin(){
+    if(!state.spinning || state.stopping) return;
+    state.stopping = true;
+    stopBtn.disabled = true;
+    clearInterval(state.timer);
+
+    var coastSteps = 3 + Math.floor(Math.random() * 3);
+    var stepDelay = 110;
+    var step = 0;
+
+    function coastStep(){
+      state.activeIndex = (state.activeIndex + 1) % cellEls.length;
+      render();
+      step++;
+      stepDelay += 45;
+      if(step < coastSteps){
+        state.timer = setTimeout(coastStep, stepDelay);
+      } else {
+        state.spinning = false;
+        state.stopping = false;
+        landOnCell();
+      }
+    }
+    state.timer = setTimeout(coastStep, stepDelay);
+  }
+
+  function landOnCell(){
+    var idx = state.activeIndex;
+    var c = cells[idx];
+    state.spinsLeft -= 1;
+    render();
+
+    if(c.type === 'whammy'){
+      state.bank = 0;
+      state.whammies += 1;
+      whammyCountEl.textContent = state.whammies;
+      setMsg(whammyLines[Math.floor(Math.random() * whammyLines.length)]);
+      render();
+      afterResolve();
+    } else if(c.type === 'extra'){
+      state.spinsLeft += 1;
+      setMsg('Bonus! You passed a spot-check — you get another spin.');
+      render();
+      afterResolve();
+    } else {
+      openQuestion(c);
+    }
+  }
+
+  function afterResolve(){
+    if(state.spinsLeft <= 0){
+      endGame();
+    } else {
+      spinBtn.disabled = false;
+      stopBtn.disabled = true;
+    }
+  }
+
+  function openQuestion(c){
+    qEyebrow.textContent = 'SAFETY CARD · ' + c.value + ' PTS · ' + c.job.toUpperCase();
+    qText.textContent = c.q;
+    qFeedback.textContent = '';
+    qContinue.style.display = 'none';
+    qOptions.innerHTML = '';
+
+    c.options.forEach(function(optText, i){
+      var b = document.createElement('button');
+      b.className = 'opt';
+      b.textContent = optText;
+      b.addEventListener('click', function(){
+        Array.prototype.forEach.call(qOptions.children, function(btn){ btn.disabled = true; });
+        if(i === c.correct){
+          b.classList.add('correct');
+          state.bank += c.value;
+          qFeedback.textContent = 'Correct! +' + c.value + ' points banked.';
+          qFeedback.style.color = 'var(--sage)';
+        } else {
+          b.classList.add('wrong');
+          qOptions.children[c.correct].classList.add('correct');
+          qFeedback.textContent = 'Not quite — no points this time.';
+          qFeedback.style.color = 'var(--tomato)';
+        }
+        render();
+        qContinue.style.display = 'inline-block';
+      });
+      qOptions.appendChild(b);
+    });
+
+    qOverlay.classList.add('show');
+  }
+
+  qContinue.addEventListener('click', function(){
+    qOverlay.classList.remove('show');
+    afterResolve();
+  });
+
+  function endGame(){
+    state.over = true;
+    spinBtn.disabled = true;
+    stopBtn.disabled = true;
+    setMsg('Shift over!');
+
+    var hs = loadHighScore();
+    if(state.bank > hs){
+      hs = state.bank;
+      saveHighScore(hs);
+    }
+    highScoreEl.textContent = hs;
+
+    var rank = ranks[0].title;
+    for(var i=0;i<ranks.length;i++){
+      if(state.bank >= ranks[i].min && state.bank <= ranks[i].max){ rank = ranks[i].title; break; }
+    }
+    endScore.textContent = state.bank;
+    endRank.textContent = rank;
+    endNote.textContent = state.whammies === 0
+      ? 'A clean shift — no whammies! Nicely played.'
+      : 'You hit ' + state.whammies + ' whammy' + (state.whammies > 1 ? 'ies' : '') + ' this round.';
+    endOverlay.classList.add('show');
+  }
+
+  function resetGame(){
+    clearInterval(state.timer);
+    clearTimeout(state.timer);
+    state = { bank:0, spinsLeft:5, activeIndex:0, spinning:false, stopping:false, whammies:0, timer:null, over:false };
+    whammyCountEl.textContent = '0';
+    spinBtn.disabled = false;
+    stopBtn.disabled = true;
+    setMsg('Ready when you are — hit spin!');
+    render();
+    endOverlay.classList.remove('show');
+  }
+
+  spinBtn.addEventListener('click', startSpin);
+  stopBtn.addEventListener('click', stopSpin);
+  resetBtn.addEventListener('click', resetGame);
+  playAgain.addEventListener('click', resetGame);
+
+})();
+</script>
+</body>
+</html>
